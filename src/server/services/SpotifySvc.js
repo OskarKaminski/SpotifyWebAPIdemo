@@ -6,6 +6,10 @@
             Promise = require("bluebird"),
             request = Promise.promisify(require('request'));
 
+        /*
+        Spotify Web API has limitation to 50 results.
+        To fetch all albums is needed to send multiple requests.
+         */
         const maxLimit = 50,
             searchingAlbum = 'Iron Maiden';
 
@@ -18,7 +22,7 @@
                         .then(function (promises) {
                             Promise.all(promises)
                                 .then(function (items) {
-                                    var merged = [].concat.apply([], items);
+                                    var merged = _.flatten(items);
                                     merged = _.uniq(merged, function (item) {
                                         return item.name.toLowerCase();
                                     });

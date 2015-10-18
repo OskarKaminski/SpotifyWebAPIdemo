@@ -1,12 +1,13 @@
-var path = require('path');
+var path = require('path'),
+    rootPath = path.normalize(__dirname + '/../../');
 
 module.exports = {
   development: {
-    rootPath: path.normalize(__dirname + '/../../'),
+    rootPath: rootPath,
     port: process.env.PORT || 3030
   },
   production: {
-    rootPath: path.normalize(__dirname + '/../../dist/'),
+    rootPath: rootPath,
     port: process.env.PORT || 80
   }
 }
